@@ -15,10 +15,7 @@ public class UserService {
             Arrays.asList(
                     new User("Ivan", "Ivanov", "123456"),
                     new User("Sergey", "Sergeev", "987654"),
-                    new User("Dmitry", "Dmitriev", "456123"),
-                    new User("asdasd", "vbvbvbvvb", "9+5552"),
-                    new User("xcxc", "fourie", "111223"),
-                    new User("tutu", "tata", "198852222222")
+                    new User("Dmitry", "Dmitriev", "456123")
             )
     );
 
