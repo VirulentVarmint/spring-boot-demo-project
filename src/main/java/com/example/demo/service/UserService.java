@@ -6,15 +6,19 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.ListIterator;
 
 @Service
 public class UserService {
 
     private final List<User> userList = new ArrayList<>(
             Arrays.asList(
-                    new User(1, "Ivan", "Ivanov", "123456"),
-                    new User(2, "Sergey", "Sergeev", "987654"),
-                    new User(3, "Dmitry", "Dmitriev", "456123")
+                    new User("Ivan", "Ivanov", "123456"),
+                    new User("Sergey", "Sergeev", "987654"),
+                    new User("Dmitry", "Dmitriev", "456123"),
+                    new User("asdasd", "vbvbvbvvb", "9+5552"),
+                    new User("xcxc", "fourie", "111223"),
+                    new User("tutu", "tata", "198852222222")
             )
     );
 
@@ -23,13 +27,25 @@ public class UserService {
     }
 
     public User getUserById(int id) {
-        return userList.stream().filter(user -> user.getId() == id).findFirst().get();
+        return userList.get(id-1);
     }
 
     public User createUer(User newUser) {
-        User lastUser = userList.isEmpty() ? null : userList.get(userList.size() - 1);
-        newUser.setId(lastUser.getId() + 1);
         userList.add(newUser);
         return newUser;
+    }
+
+    public User updateUser(int id, User user) {
+        userList.get(id-1).updateUser(user);
+        return userList.get(id-1);
+    }
+
+    public List<User> deleteUser(int id) {
+        userList.remove(id-1);
+        userList.get(0).setIdTracker(userList.size());
+        for (int i = id; i <= userList.size(); i++) {
+            userList.get(i-1).setId(i);
+        }
+        return userList;
     }
 }
